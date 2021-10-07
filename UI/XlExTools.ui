@@ -1,0 +1,641 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1266</width>
+    <height>835</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../Imgs/XlExTools.qrc">
+    <normaloff>:/icons/Excel管理.png</normaloff>:/icons/Excel管理.png</iconset>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout_4" stretch="0,0,1">
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_1" stretch="1,20,0,0">
+      <item>
+       <widget class="QLabel" name="labelSrcDir">
+        <property name="text">
+         <string>源文件所在目录：</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="lineEditSrcDir">
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+        <property name="placeholderText">
+         <string>请选择包含被汇总Excel文件的目录</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButtonSrcDirHist">
+        <property name="toolTip">
+         <string>历史记录</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="../Imgs/XlExTools.qrc">
+          <normaloff>:/icons/历史记录.png</normaloff>:/icons/历史记录.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButtonSrcDir">
+        <property name="text">
+         <string> 选择目录名   </string>
+        </property>
+        <property name="icon">
+         <iconset resource="../Imgs/XlExTools.qrc">
+          <normaloff>:/icons/Folder.ico</normaloff>:/icons/Folder.ico</iconset>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,1,0,0,1,0,0">
+      <item>
+       <widget class="QLabel" name="labelDstFile">
+        <property name="text">
+         <string>汇总结果文件名：</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="lineEditDstFile">
+        <property name="toolTip">
+         <string>默认xlsx文件（可录入xls或xlsx扩展名）</string>
+        </property>
+        <property name="readOnly">
+         <bool>false</bool>
+        </property>
+        <property name="placeholderText">
+         <string>请录入汇总后生成的Excel文件名</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButtonDstFileHis">
+        <property name="toolTip">
+         <string>历史记录</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="../Imgs/XlExTools.qrc">
+          <normaloff>:/icons/历史记录.png</normaloff>:/icons/历史记录.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkBoxDstDir">
+        <property name="text">
+         <string>结果保存在当前目录</string>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="lineEditDstDir">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+        <property name="placeholderText">
+         <string>请选择结果保存目录</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButtonDstDirHis">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="toolTip">
+         <string>历史记录</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="../Imgs/XlExTools.qrc">
+          <normaloff>:/icons/历史记录.png</normaloff>:/icons/历史记录.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButtonDstDir">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>选择结果保存目录</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../Imgs/XlExTools.qrc">
+          <normaloff>:/icons/xlsx.ico</normaloff>:/icons/xlsx.ico</iconset>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QSplitter" name="splitter">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <widget class="QGroupBox" name="groupBox_2">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="title">
+        <string>请选择参与汇总的文件</string>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_5">
+          <item>
+           <widget class="QPushButton" name="pushButtonSelAll">
+            <property name="toolTip">
+             <string>选中文件加入汇总列表</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../Imgs/XlExTools.qrc">
+              <normaloff>:/icons/全选.png</normaloff>:/icons/全选.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButtonSelNo">
+            <property name="toolTip">
+             <string>选中文件取消汇总列表</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../Imgs/XlExTools.qrc">
+              <normaloff>:/icons/全不选.png</normaloff>:/icons/全不选.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButtonFresh">
+            <property name="toolTip">
+             <string>刷新源文件</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../Imgs/XlExTools.qrc">
+              <normaloff>:/icons/刷新.png</normaloff>:/icons/刷新.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="checkBoxXls">
+            <property name="toolTip">
+             <string>显示XLS文件</string>
+            </property>
+            <property name="text">
+             <string>XLS</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../Imgs/XlExTools.qrc">
+              <normaloff>:/icons/xls.png</normaloff>:/icons/xls.png</iconset>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="checkBoxXlsx">
+            <property name="toolTip">
+             <string>显示XLSX文件</string>
+            </property>
+            <property name="text">
+             <string>XLSX</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../Imgs/XlExTools.qrc">
+              <normaloff>:/icons/XLSX.png</normaloff>:/icons/XLSX.png</iconset>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QTableWidget" name="tableWidgetFileList">
+          <property name="toolTip">
+           <string>双击打开文件</string>
+          </property>
+          <property name="editTriggers">
+           <set>QAbstractItemView::NoEditTriggers</set>
+          </property>
+          <property name="alternatingRowColors">
+           <bool>true</bool>
+          </property>
+          <property name="selectionMode">
+           <enum>QAbstractItemView::ExtendedSelection</enum>
+          </property>
+          <property name="selectionBehavior">
+           <enum>QAbstractItemView::SelectRows</enum>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+          <property name="showGrid">
+           <bool>false</bool>
+          </property>
+          <property name="sortingEnabled">
+           <bool>true</bool>
+          </property>
+          <attribute name="horizontalHeaderCascadingSectionResizes">
+           <bool>true</bool>
+          </attribute>
+          <attribute name="verticalHeaderVisible">
+           <bool>true</bool>
+          </attribute>
+          <attribute name="verticalHeaderHighlightSections">
+           <bool>false</bool>
+          </attribute>
+          <column>
+           <property name="text">
+            <string>文件名</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>大小</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>类型</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>日期</string>
+           </property>
+          </column>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_3">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="title">
+        <string>数据提取汇总规则</string>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_5" stretch="0,0">
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <item>
+           <widget class="QLabel" name="label_4">
+            <property name="text">
+             <string>选取规则</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="comboBoxRule">
+            <property name="editable">
+             <bool>false</bool>
+            </property>
+            <property name="placeholderText">
+             <string>选择规则</string>
+            </property>
+            <item>
+             <property name="text">
+              <string>F00 文本内容→目标表指定单元格</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>F11 单文件指定单元格→目标表指定单元格</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>F1N 单文件连续单元格→目标表连续单元格</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>FN1 多文件指定单元格→目标表连续单元格</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>FNN 多文件连续单元格→目标表连续单元格</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSplitter" name="splitterRuleRule">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <widget class="QSplitter" name="splitterRulePic">
+             <property name="autoFillBackground">
+              <bool>true</bool>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <widget class="QTextEdit" name="textEditRuleMemo">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="readOnly">
+               <bool>true</bool>
+              </property>
+              <property name="placeholderText">
+               <string>规则说明</string>
+              </property>
+             </widget>
+             <widget class="QLabel" name="labelRulePic">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="pixmap">
+               <pixmap resource="../Imgs/XlExTools.qrc">:/Rules/ps/FNN.png</pixmap>
+              </property>
+              <property name="scaledContents">
+               <bool>true</bool>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+              <property name="margin">
+               <number>0</number>
+              </property>
+             </widget>
+            </widget>
+            <widget class="QWidget" name="layoutWidget">
+             <layout class="QVBoxLayout" name="verticalLayout_3" stretch="0,1">
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_2">
+                <item>
+                 <widget class="QPushButton" name="pushButtonRuleAdd">
+                  <property name="text">
+                   <string>增加规则</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="../Imgs/XlExTools.qrc">
+                    <normaloff>:/icons/增加.png</normaloff>:/icons/增加.png</iconset>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="pushButtonRuleDel">
+                  <property name="text">
+                   <string>↑删除规则</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="../Imgs/XlExTools.qrc">
+                    <normaloff>:/icons/减除.png</normaloff>:/icons/减除.png</iconset>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="pushButtonRuleLoad">
+                  <property name="text">
+                   <string>导入规则</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="../Imgs/XlExTools.qrc">
+                    <normaloff>:/icons/导入.png</normaloff>:/icons/导入.png</iconset>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="pushButtonRuleSave">
+                  <property name="text">
+                   <string>保存规则</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="../Imgs/XlExTools.qrc">
+                    <normaloff>:/icons/导出.png</normaloff>:/icons/导出.png</iconset>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <widget class="QTableWidget" name="tableWidgetRulesUse">
+                <property name="toolTip">
+                 <string>双击数据修改地址</string>
+                </property>
+                <property name="editTriggers">
+                 <set>QAbstractItemView::DoubleClicked</set>
+                </property>
+                <property name="alternatingRowColors">
+                 <bool>true</bool>
+                </property>
+                <property name="sortingEnabled">
+                 <bool>true</bool>
+                </property>
+                <column>
+                 <property name="text">
+                  <string>规则代号</string>
+                 </property>
+                </column>
+                <column>
+                 <property name="text">
+                  <string>源表数据</string>
+                 </property>
+                </column>
+                <column>
+                 <property name="text">
+                  <string>目标表数据</string>
+                 </property>
+                </column>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>汇总Excel额外行数</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lineEditRow">
+            <property name="toolTip">
+             <string>一般行数为汇总的文件数+1，此处录入文件数量之外的行数</string>
+            </property>
+            <property name="text">
+             <string>1</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButtonSum">
+            <property name="text">
+             <string>汇总</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../Imgs/XlExTools.qrc">
+              <normaloff>:/icons/ZoomLarge.png</normaloff>:/icons/ZoomLarge.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButtonExit">
+            <property name="text">
+             <string>退出</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../Imgs/XlExTools.qrc">
+              <normaloff>:/icons/Action_Exit_32x32.png</normaloff>:/icons/Action_Exit_32x32.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="checkBoxTop">
+            <property name="text">
+             <string>窗口置顶</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1266</width>
+     <height>26</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources>
+  <include location="../Imgs/XlExTools.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>pushButtonExit</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1443</x>
+     <y>107</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>783</x>
+     <y>549</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

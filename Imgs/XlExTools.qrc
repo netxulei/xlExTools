@@ -1,0 +1,27 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>Excel管理.png</file>
+    <file>减除.png</file>
+    <file>增加.png</file>
+    <file>导出.png</file>
+    <file>导入.png</file>
+    <file>刷新.png</file>
+    <file>xls.png</file>
+    <file>XLSX.png</file>
+    <file>全不选.png</file>
+    <file>全选.png</file>
+    <file>历史记录.png</file>
+    <file>chkrptmain.ico</file>
+    <file>Folder.ico</file>
+    <file>xlsx.ico</file>
+    <file>ZoomLarge.png</file>
+    <file>Action_Exit_32x32.png</file>
+  </qresource>
+  <qresource prefix="Rules">
+    <file>ps/F00.png</file>
+    <file>ps/F1N.png</file>
+    <file>ps/F11.png</file>
+    <file>ps/FN1.png</file>
+    <file>ps/FNN.png</file>
+  </qresource>
+</RCC>
