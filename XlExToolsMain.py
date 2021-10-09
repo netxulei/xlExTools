@@ -612,65 +612,68 @@ class XLExTool(QtWidgets.QMainWindow, Ui_MainWindow):
         for i in range(row):
             # 遍历一次规则，分别保存到list后，再处理。
             # 同时，找到规则中最大的行和列
-            src_item_text = self.tableWidgetRulesUse.item(i, 1).text()  # 源文件地址
-            dst_item_text = self.tableWidgetRulesUse.item(i, 2).text()  # 目标文件地址
+            src_item_text = self.tableWidgetRulesUse.item(i, 1).text()  # 第i行1列源文件地址
+            dst_item_text = self.tableWidgetRulesUse.item(i, 2).text()  # 第i行2列目标文件地址
             # print(dst_item_text, xl.excel_item_to_rowcol("dst_item_text"))
 
-            # row_char=self.tableWidgetRulesUse.item(i, 1).text()
-            # col_char = self.tableWidgetRulesUse.item(i, 1).text()
-            if self.tableWidgetRulesUse.item(i, 0).text() == 'F00':
+            if self.tableWidgetRulesUse.item(i, 0).text() == 'F00':  # 第i行0列 规则名称
                 f00_list.append(
                     [src_item_text, xl.excel_item_to_rowcol(dst_item_text)])
-                # -----获得最大列------
-                # print(f00_list[0][1][1])
-                if max_col < f00_list[0][1][1]:
-                    # print('max_col:{0},f00_list[1][1]:{1}'.format(max_col, f00_list[0][1][1]))
-                    max_col = f00_list[0][1][1]
-                # -----获得最大列------
 
             if self.tableWidgetRulesUse.item(i, 0).text() == 'F11':
                 f11_list.append(
                     [xl.excel_item_to_rowcol(src_item_text), xl.excel_item_to_rowcol(dst_item_text)])
-                # -----获得最大列------
-                if max_col < f11_list[0][1][1]:
-                    max_col = f11_list[0][1][1]
-                # -----获得最大列------
+
             if self.tableWidgetRulesUse.item(i, 0).text() == 'F1N':
                 f1n_list.append(
                     [xl.excel_item_to_rowcol(src_item_text.split(':')[0]),
                      xl.excel_item_to_rowcol(src_item_text.split(':')[1]),
                      xl.excel_item_to_rowcol(dst_item_text.split(':')[0]),
                      xl.excel_item_to_rowcol(dst_item_text.split(':')[1])])
-                # -----范围地址获得最大列------
-                if max_col < f1n_list[0][1][1]:
-                    max_col = f1n_list[0][1][1]
-                if max_col < f1n_list[0][3][1]:
-                    max_col = f1n_list[0][3][1]
-                # -----范围地址获得最大列------
+
             if self.tableWidgetRulesUse.item(i, 0).text() == 'FN1':
                 fn1_list.append(
                     [xl.excel_item_to_rowcol(src_item_text), xl.excel_item_to_rowcol(dst_item_text)])
-                # -----获得最大列------
-                if max_col < fn1_list[0][1][1]:
-                    max_col = fn1_list[0][1][1]
-                # -----获得最大列------
+
             if self.tableWidgetRulesUse.item(i, 0).text() == 'FNN':
                 fnn_list.append(
                     [xl.excel_item_to_rowcol(src_item_text.split(':')[0]),
                      xl.excel_item_to_rowcol(src_item_text.split(':')[1]),
                      xl.excel_item_to_rowcol(dst_item_text.split(':')[0]),
                      xl.excel_item_to_rowcol(dst_item_text.split(':')[1])])
+
+            # print(f00_list,
+            #       f11_list,
+            #       f1n_list,
+            #       fn1_list,
+            #       fnn_list)
+            # 每个列表比较目标地址大小，确定最大列号
+            if len(f00_list) > 0:
+                if max_col < f00_list[i][1][1]:
+                    max_col = f00_list[i][1][1]
+            if len(f11_list) > 0:
+                if max_col < f11_list[i][1][1]:
+                    max_col = f11_list[i][1][1]
+            if len(f1n_list) > 0:
                 # -----范围地址获得最大列------
-                if max_col < fnn_list[0][1][1]:
-                    max_col = fnn_list[0][1][1]
-                if max_col < fnn_list[0][3][1]:
-                    max_col = fnn_list[0][3][1]
+                if max_col < f1n_list[i][1][1]:
+                    max_col = f1n_list[i][1][1]
+                if max_col < f1n_list[i][3][1]:
+                    max_col = f1n_list[i][3][1]
                 # -----范围地址获得最大列------
-        # print(f00_list,
-        #       f11_list,
-        #       f1n_list,
-        #       fn1_list,
-        #       fnn_list)
+            if len(fn1_list) > 0:
+                # -----获得最大列------
+                if max_col < fn1_list[i][1][1]:
+                    max_col = fn1_list[i][1][1]
+                # -----获得最大列------
+            if len(fnn_list) > 0:
+                # -----范围地址获得最大列------
+                if max_col < fnn_list[i][1][1]:
+                    max_col = fnn_list[i][1][1]
+                if max_col < fnn_list[i][3][1]:
+                    max_col = fnn_list[i][3][1]
+                # -----范围地址获得最大列------
+
         # print('max_col:{0}'.format(max_col))
         # dest_pd.to_csv(rule_file[0], index=False)
         # ----------------------------------------------------------------
