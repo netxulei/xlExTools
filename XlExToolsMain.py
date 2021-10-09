@@ -642,37 +642,41 @@ class XLExTool(QtWidgets.QMainWindow, Ui_MainWindow):
                      xl.excel_item_to_rowcol(dst_item_text.split(':')[0]),
                      xl.excel_item_to_rowcol(dst_item_text.split(':')[1])])
 
-            # print(f00_list,
-            #       f11_list,
-            #       f1n_list,
-            #       fn1_list,
-            #       fnn_list)
-            # 每个列表比较目标地址大小，确定最大列号
-            if len(f00_list) > 0:
+        print(f00_list)
+        print(f11_list)
+        print(f1n_list)
+        print(fn1_list)
+        print(fnn_list)
+        # 每个列表比较目标地址大小，确定最大列号
+        if len(f00_list) > 0:
+            for i in range(len(f00_list)):
                 if max_col < f00_list[i][1][1]:
                     max_col = f00_list[i][1][1]
-            if len(f11_list) > 0:
+
+        if len(f11_list) > 0:
+            for i in range(len(f11_list)):
                 if max_col < f11_list[i][1][1]:
                     max_col = f11_list[i][1][1]
-            if len(f1n_list) > 0:
-                # -----范围地址获得最大列------
+        if len(f1n_list) > 0:
+            for i in range(len(f1n_list)):
                 if max_col < f1n_list[i][1][1]:
                     max_col = f1n_list[i][1][1]
                 if max_col < f1n_list[i][3][1]:
                     max_col = f1n_list[i][3][1]
-                # -----范围地址获得最大列------
-            if len(fn1_list) > 0:
-                # -----获得最大列------
+            # -----范围地址获得最大列------
+        if len(fn1_list) > 0:
+
+            for i in range(len(fn1_list)):
                 if max_col < fn1_list[i][1][1]:
                     max_col = fn1_list[i][1][1]
-                # -----获得最大列------
-            if len(fnn_list) > 0:
-                # -----范围地址获得最大列------
+            # -----获得最大列------
+        if len(fnn_list) > 0:
+            for i in range(len(fnn_list)):
                 if max_col < fnn_list[i][1][1]:
                     max_col = fnn_list[i][1][1]
                 if max_col < fnn_list[i][3][1]:
                     max_col = fnn_list[i][3][1]
-                # -----范围地址获得最大列------
+            # -----范围地址获得最大列------
 
         # print('max_col:{0}'.format(max_col))
         # dest_pd.to_csv(rule_file[0], index=False)
